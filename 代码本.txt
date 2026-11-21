@@ -1,0 +1,51 @@
+import torch
+
+矩阵取值
+索引和切片
+
+x.shape    	矩阵形状
+x.numel()   总元素个数
+  
+矩阵变换
+x.reshape(3,4)
+A.T     矩阵转置
+x+y,x-y,x/y,x**y
+torch.exp(x)   逐个元素算e的该元素次方
+A.sum()  
+A_sum_axis0 = A.sum(axis=0)      沿着列的方向求和，结果是1行m列的向量
+sum_A=A.sum(axis=1, keepdims=True)  保持为n行1列的求和
+
+A.mean()    求平均值
+A.cumsum(axis=0)沿着列的方向求累计和
+矩阵的初始化
+x=torch.arange(12)
+torch.zeros((2,3,4))
+torch.ones((2,3,4))
+torch.randn(3,4)
+torch.tensor([[],[],[]])
+A*B   两个矩阵的按元素乘法  Hadamard积
+torch.mm(A,B)二维矩阵乘法
+torch.dot(x,y)一维矩阵点乘
+
+torch.abs(u).sum()
+torch.norm(u)   u的L2范数（u为向量）是每个分量平方和的几何平均，当维度为2时体现为勾股定理
+
+x=torch.arange(12,dtype=torch.float32).reshape((3,4))
+torch.cat((X,Y),dim=0)
+
+
+broadcasting mechanism
+当行列不同时，扩展到
+2,1
+1,4
+对应维度处要么维度相同，要么有一个是1
+索引
+X[1]第二个元素（行向量）维度会减少
+X[1,2]第二行第三列的元素，维度减少
+X[1:3]从第二行到第三行（左闭右开），维度不变
+X[1:2,1:2]前一个是行后一个是列，X[1:2,:]1行所有列
+节省内存：
+索引与切片
+复合运算符
+直接赋值Y=X
+X[:]表示他本身，且赋值不会导致空间滥用
